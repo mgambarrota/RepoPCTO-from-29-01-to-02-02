@@ -1,1 +1,4 @@
 QUERY; EXPECTED_RESULT
+SELECT 1; 1
+SELECT password FROM Users WHERE username="admin"; 12345
+SELECT title FROM Posts, Users WHERE CODOwner=Users.id AND username="admin" LIMIT 1;Primo post
