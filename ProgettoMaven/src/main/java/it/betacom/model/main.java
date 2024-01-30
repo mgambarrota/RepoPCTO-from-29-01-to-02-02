@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class main {
@@ -88,13 +95,27 @@ public class main {
 
                     break;
                 case "4":
-
-                    media.forEach(
+                        
+                        try (FileWriter fileWriter = new FileWriter("media.json")) {
+                                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                                    gson.toJson(mediaList, fileWriter);
+                                    System.out.println("File JSON creato con successo.");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                        
+                               
+                                System.out.println("Contenuto del file JSON:");
+                                mediaList.forEach(System.out::println);
+                            }
+                    
+                   /*
+                       media.forEach(
                             m -> {
                                 System.out.println(m.toString());
                             }
                     );
-
+                */
                     break;
                 case "5":
                     return;
