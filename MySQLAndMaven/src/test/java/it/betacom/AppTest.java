@@ -27,6 +27,8 @@ public class AppTest {
             properties.load(AppTest.class.getClassLoader().getResourceAsStream("config.properties"));
         } catch (IOException e) {
             log.error("Unexpected error");
+            e.printStackTrace();
+            assertFalse(true);
         }
     }
     @BeforeAll
