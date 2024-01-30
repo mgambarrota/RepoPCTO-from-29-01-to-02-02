@@ -1,1 +1,2 @@
-select count(*) from Pittori;
+Query, expected value
+select count(*) from Pittori;, 4

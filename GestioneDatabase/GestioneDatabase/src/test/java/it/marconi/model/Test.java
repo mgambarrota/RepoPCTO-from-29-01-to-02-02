@@ -1,14 +1,17 @@
 package it.marconi.model;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
-import java.sql.DriverManager;
+
+import static junit.framework.Assert.assertEquals;
 
 @Slf4j
 
@@ -38,10 +41,23 @@ public class Test {
         log.info("Connessione al DB riuscita");
     }
 
+    @AfterAll
     static void closeConnection() throws SQLException {
         if (connection != null) {
             connection.close();
             log.info("Connessione chiusa");
+        }
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/query.csv", numLinesToSkip = 1)
+    void testQuery(String query, String expectedValue) throws SQLException {
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            resultSet.next();
+            String actualValue = resultSet.getString(1);
+            assertEquals(expectedValue, actualValue);
+            log.info("Il valore aspettato è lo stesso di quello attuale.");
         }
     }
 }
