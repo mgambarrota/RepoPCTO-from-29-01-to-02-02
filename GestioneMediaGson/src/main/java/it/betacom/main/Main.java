@@ -8,7 +8,9 @@ import it.betacom.model.Video;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -89,11 +91,32 @@ public class Main {
                     break;
                 case "4":
 
-                    media.forEach(
-                            m -> {
-                                System.out.println(m.toString());
-                            }
-                    );
+                    try {
+                        File jsonmedia = new File("media.json");
+                        if (jsonmedia.createNewFile()) {
+                            System.out.println("File created: " + jsonmedia.getName());
+                        } else {
+                            System.out.println("File already exists.");
+                        }
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+                    try {
+                        FileWriter myWriter = new FileWriter("media.json");
+                        myWriter.write("");
+                        /*.forEach(
+                                m -> {
+
+                                }
+                        );*/
+                        myWriter.close();
+                        System.out.println("Successfully wrote to the file.");
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+
 
                     break;
                 case "5":
