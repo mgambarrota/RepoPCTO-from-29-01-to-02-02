@@ -1,10 +1,13 @@
 package it.betacom.main;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.betacom.model.Audio;
 import it.betacom.model.Foto;
 import it.betacom.model.Media;
 import it.betacom.model.Video;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,6 +18,8 @@ public class Main {
     public static void main(String[] args) {
         List<Media> media = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         while(true){
             System.out.println("1 - Inserisci i dati di un video");
             System.out.println("2 - Inserisci i dati di una foto");
@@ -89,11 +94,18 @@ public class Main {
                     break;
                 case "4":
 
-                    media.forEach(
-                            m -> {
-                                System.out.println(m.toString());
-                            }
-                    );
+                    try(FileWriter writer = new FileWriter("media.json")){
+                        media.forEach(
+                                m -> {
+                                    gson.toJson(m, writer);
+                                }
+                        );
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    gson.toJson(media, System.out);
+                    System.out.println();
 
                     break;
                 case "5":
