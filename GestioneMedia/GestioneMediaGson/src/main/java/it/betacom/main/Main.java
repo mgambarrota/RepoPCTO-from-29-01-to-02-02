@@ -7,6 +7,7 @@ import it.betacom.model.Foto;
 import it.betacom.model.Media;
 import it.betacom.model.Video;
 
+import java.nio.charset.StandardCharsets;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.LinkedList;
@@ -27,7 +28,7 @@ public class Main {
                 0) Esci dal programma
                 >\s""");
 
-            int decisione = -1;
+            int decisione;
             try {
                 decisione = in.nextInt();
                 in.nextLine(); // Consuma il resto della riga dopo il numero
@@ -46,7 +47,7 @@ public class Main {
                     break;
                 case 2:
                     try {
-                        PrintWriter writer = new PrintWriter("list.json", "UTF-8");
+                        PrintWriter writer = new PrintWriter("list.json", StandardCharsets.UTF_8);
                         writer.println(gson.toJson(media));
                         /*media.forEach(
                                 m -> {
@@ -68,8 +69,8 @@ public class Main {
 
     private static void inserisciMedia(){
         int decisione = 0;
-        double dimensione = 0;
-        String nome = null, formato = null;
+        double dimensione;
+        String nome, formato;
 
         do {
             System.out.print("""
@@ -84,7 +85,6 @@ public class Main {
             } catch (InputMismatchException e) {
                 System.out.println("Input non valido. Inserisci un numero.");
                 in.nextLine(); // Pulisce il buffer
-                continue;
             }
         } while (decisione < 1 || decisione > 3 );
 
@@ -119,7 +119,7 @@ public class Main {
     }
 
     private static void inFoto(double dimensione, String nome, String formato){
-        int risoluzioneX = 0, risoluzioneY = 0;
+        int risoluzioneX, risoluzioneY;
 
         System.out.print("Inserire larghezza in pixel> ");
         try {
@@ -143,7 +143,7 @@ public class Main {
     }
 
     private static void inAudio(double dimensione, String nome, String formato){
-        int durata = 0;
+        int durata;
 
         System.out.print("Inserire durata in secondi> ");
         try {
@@ -158,7 +158,7 @@ public class Main {
     }
 
     private static void inVideo(double dimensione, String nome, String formato){
-        int durata = 0;
+        int durata;
 
         System.out.print("Inserire durata in secondi> ");
         try {
