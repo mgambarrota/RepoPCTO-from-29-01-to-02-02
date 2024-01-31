@@ -21,6 +21,6 @@ public class DipendenteServiceImpl implements IDipendenteService {
 
     @Override
     public DipendenteModel saveOrUpdate(DipendenteModel entity) {
-        return null;
+        return repository.save(entity);
     }
 }
