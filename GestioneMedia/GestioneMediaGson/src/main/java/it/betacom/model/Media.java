@@ -37,7 +37,7 @@ public class Media {
 
     @Override
     public String toString() {
-        return "\nMedia{" +
+        return "Media{" +
                 "dimensione=" + dimensione +
                 ", nome='" + nome + '\'' +
                 ", formato='" + formato + '\'' +

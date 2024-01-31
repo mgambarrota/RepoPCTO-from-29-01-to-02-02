@@ -20,7 +20,7 @@ public class Foto extends Media{
 
     @Override
     public String toString() {
-        return "\nFoto{" +
+        return "Foto{" +
                 "risoluzione=" + Arrays.toString(risoluzione) +
                 ", dimensione=" + dimensione +
                 ", nome='" + nome + '\'' +

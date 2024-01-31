@@ -18,7 +18,7 @@ public class Video extends Media{
 
     @Override
     public String toString() {
-        return "\nVideo{" +
+        return "Video{" +
                 "durata=" + durata +
                 ", dimensione=" + dimensione +
                 ", nome='" + nome + '\'' +

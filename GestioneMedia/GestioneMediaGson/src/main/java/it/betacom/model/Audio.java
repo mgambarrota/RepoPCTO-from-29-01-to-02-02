@@ -16,7 +16,7 @@ public class Audio extends Media {
 
     @Override
     public String toString() {
-        return "\nAudio{" +
+        return "Audio{" +
                 "durata=" + durata +
                 ", dimensione=" + dimensione +
                 ", nome='" + nome + '\'' +
