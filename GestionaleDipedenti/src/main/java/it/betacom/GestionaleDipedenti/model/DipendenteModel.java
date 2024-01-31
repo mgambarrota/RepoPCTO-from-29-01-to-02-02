@@ -12,6 +12,7 @@ public class DipendenteModel {
     private Integer id;
 
     private String nome;
+    
     private String cognome;
 
     @Temporal(TemporalType.DATE)
