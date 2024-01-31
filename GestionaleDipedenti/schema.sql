@@ -1,0 +1,57 @@
+CREATE DATABASE Dipendenti;
+USE Dipendenti;
+
+CREATE TABLE Dipendente(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	nome VARCHAR(255) NOT NULL,
+	cognome VARCHAR(255) NOT NULL,
+	data_nascita DATE NOT NULL,
+	sede_appartenenza VARCHAR(255) NOT NULL,
+	data_assunzione DATE,
+	data_fine_rapporto DATE
+);
+
+INSERT INTO Dipendente (nome, cognome, data_nascita, sede_appartenenza, data_assunzione, data_fine_rapporto)
+VALUES
+    ('Mario', 'Rossi', '1985-03-15', 'Milano', '2010-05-20', '2022-08-31'),
+    ('Luigi', 'Bianchi', '1990-08-22', 'Roma', '2012-01-10', NULL),
+    ('Giulia', 'Verdi', '1988-12-10', 'Torino', '2011-09-05', '2023-11-30'),
+    ('Anna', 'Neri', '1993-06-25', 'Napoli', '2015-03-12', NULL),
+    ('Marco', 'Gialli', '1980-04-18', 'Firenze', '2009-11-28', '2021-07-15'),
+    ('Sara', 'Marroni', '1991-10-07', 'Palermo', '2013-06-02', NULL),
+    ('Paolo', 'Rosa', '1987-02-14', 'Bologna', '2010-08-19', '2022-09-25'),
+    ('Elena', 'Blu', '1983-09-30', 'Genova', '2014-02-28', NULL),
+    ('Alessandro', 'Viola', '1986-11-12', 'Milano', '2012-04-17', '2023-12-10'),
+    ('Chiara', 'Azzurri', '1995-07-08', 'Roma', '2016-10-22', NULL),
+    ('Davide', 'Arancioni', '1982-05-03', 'Torino', '2011-01-15', '2024-01-15'),
+    ('Martina', 'Verdi', '1990-03-20', 'Napoli', '2013-08-09', NULL),
+    ('Giovanni', 'Neri', '1989-08-17', 'Firenze', '2012-06-28', '2023-10-20'),
+    ('Francesca', 'Gialli', '1984-12-02', 'Palermo', '2010-10-14', NULL),
+    ('Simone', 'Marroni', '1981-11-11', 'Bologna', '2015-04-30', '2022-11-30'),
+    ('Elisa', 'Rosa', '1992-01-28', 'Genova', '2017-03-18', NULL),
+    ('Andrea', 'Blu', '1988-06-07', 'Milano', '2012-09-05', '2024-01-05'),
+    ('Laura', 'Viola', '1983-04-24', 'Roma', '2011-07-20', NULL),
+    ('Gabriele', 'Azzurri', '1994-09-16', 'Torino', '2014-11-02', '2023-09-10'),
+    ('Valentina', 'Arancioni', '1980-10-11', 'Napoli', '2009-12-28', NULL),
+    ('Nicola', 'Verdi', '1991-08-05', 'Firenze', '2016-02-14', '2022-08-20'),
+    ('Federica', 'Neri', '1986-02-18', 'Palermo', '2013-05-06', NULL),
+    ('Roberto', 'Gialli', '1985-07-23', 'Bologna', '2010-03-17', '2023-12-15'),
+    ('Cristina', 'Marroni', '1993-04-30', 'Genova', '2015-08-22', NULL),
+    ('Matteo', 'Rosa', '1982-11-09', 'Milano', '2012-10-15', '2022-10-31'),
+    ('Serena', 'Blu', '1990-01-14', 'Roma', '2013-07-09', NULL),
+    ('Fabio', 'Viola', '1981-03-28', 'Torino', '2010-09-20', '2023-11-20'),
+    ('Giorgio', 'Azzurri', '1989-06-03', 'Napoli', '2014-04-12', NULL),
+    ('Monica', 'Arancioni', '1984-08-19', 'Firenze', '2011-11-28', '2022-07-05'),
+    ('Andrea', 'Verdi', '1992-05-25', 'Palermo', '2016-01-17', NULL),
+    ('Alessia', 'Neri', '1980-12-10', 'Bologna', '2013-08-05', '2023-10-15'),
+    ('Stefano', 'Gialli', '1987-09-07', 'Genova', '2010-04-22', NULL),
+    ('Eleonora', 'Marroni', '1995-02-24', 'Milano', '2015-07-30', '2022-12-20'),
+    ('Lorenzo', 'Rosa', '1983-07-11', 'Roma', '2012-03-15', NULL),
+    ('Chiara', 'Blu', '1990-04-18', 'Torino', '2013-10-01', '2023-09-30'),
+    ('Daniele', 'Viola', '1981-12-03', 'Napoli', '2010-08-14', NULL),
+    ('Federico', 'Azzurri', '1988-10-27', 'Firenze', '2014-05-22', '2022-08-10'),
+    ('Valeria', 'Arancioni', '1984-02-14', 'Palermo', '2011-12-05', NULL),
+    ('Giovanna', 'Verdi', '1993-09-30', 'Bologna', '2015-01-18', '2023-11-25'),
+    ('Luca', 'Gialli', '1982-05-17', 'Genova', '2010-10-30', NULL),
+    ('Elena', 'Marroni', '1991-08-22', 'Milano', '2013-07-10', '2022-10-10'),
+    ('Roberto', 'Rosa', '1980-11-09', 'Roma', '2011-04-25', NULL);
