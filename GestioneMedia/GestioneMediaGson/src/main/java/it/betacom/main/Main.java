@@ -2,36 +2,41 @@ package it.betacom.main;
 
 import java.io.*;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.betacom.model.Audio;
 import it.betacom.model.Foto;
 import it.betacom.model.Media;
 import it.betacom.model.Video;
-
 import java.nio.charset.StandardCharsets;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 public class Main {
     private static final Scanner in = new Scanner(System.in);
     private static final LinkedList<Media> media = new LinkedList<>();
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+
+
 
     public static void main(String[] args) {
-        Gson gson = new Gson();
-        boolean running = true;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        boolean runnable = true;
 
-        while (running){
+        while (runnable){
             System.out.print("""
                 Gestione della multimedialità
                 1) Inserire nome del media
-                2) Visualizza i nomi di media
+                2) Anteprima dei media
+                3) Visualizza i media su file Json
                 0) Esci dal programma
                 >\s""");
 
             int decisione;
             try {
                 decisione = in.nextInt();
-                in.nextLine(); // Consuma il resto della riga dopo il numero
+                in.nextLine(); // Pulisci il buffer
             } catch (InputMismatchException e) {
                 System.out.println("Input non valido. Inserisci un numero.");
                 in.nextLine(); // Pulisce il buffer
@@ -40,62 +45,71 @@ public class Main {
 
             switch (decisione) {
                 case 0:
-                    running = false;
+                    runnable = false;
+                    System.out.println("\nArrivederci!");
                     break;
                 case 1:
                     inserisciMedia();
+                    System.out.println("\nElemento aggiunto alla lista!\n");
                     break;
                 case 2:
+                    if (!media.isEmpty()) {
+                        System.out.println("\n" + gson.toJson(media) + "\n");
+                    } else System.out.println("La lista dei media è vuota!\n");
+                    break;
+                case 3:
                     try {
-                        PrintWriter writer = new PrintWriter("list.json", StandardCharsets.UTF_8);
-                        writer.println(gson.toJson(media));
-                        /*media.forEach(
-                                m -> {
-                                    writer.println(gson.toJson(m));
-                                }
-                        );*/
-                        writer.close();
+                        if (!media.isEmpty()) {
+                            PrintWriter writer = new PrintWriter("outList.json", StandardCharsets.UTF_8);
+                            writer.println(gson.toJson(media));
+                            writer.close();
+
+                            System.out.println("\n" + ((media.size() > 1) ? "Stampati" : "Stampato") + "sul file 'outList.json' correttamente\n");
+                        } else System.out.println("La lista dei media è vuota!\n");
                     }catch(IOException e){
-                        e.printStackTrace();
+                        logger.severe("\nErrore nella scrittura del file... (Permesso negato?)\n");
                     }
                     break;
                 default:
-                    System.out.println("Decisione non valida. Riprova.");
+                    System.out.println("\nDecisione non valida. Riprova.\n");
                     break;
             }
         }
         in.close();
     }
-
     private static void inserisciMedia(){
         int decisione = 0;
-        double dimensione;
+        boolean runnable = true;
+        double dimensione = 0;
         String nome, formato;
 
         do {
             System.out.print("""
-                    Cosa vuoi inserire?
+                    \nCosa vuoi inserire?
                     1) Foto
                     2) Audio
                     3) Video
                     >\s""");
             try {
                 decisione = in.nextInt();
-                in.nextLine(); // Consuma il resto della riga dopo il numero
+                in.nextLine(); // Pulisci il buffer
             } catch (InputMismatchException e) {
                 System.out.println("Input non valido. Inserisci un numero.");
                 in.nextLine(); // Pulisce il buffer
             }
         } while (decisione < 1 || decisione > 3 );
 
-        System.out.print("Inserire dimensione in Megabyte> ");
-        try {
-            dimensione = in.nextDouble();
-            in.nextLine(); // Consuma il resto della riga dopo il numero
-        } catch (InputMismatchException e) {
-            System.out.println("Input non valido. Inserisci un numero.");
-            in.nextLine(); // Pulisce il buffer
-            return;
+        while (runnable) {
+            System.out.print("Inserire dimensione in Megabyte> ");
+            try {
+                dimensione = in.nextDouble();
+                in.nextLine(); // Pulisci il buffer
+                runnable = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Input non valido. Inserisci un numero.");
+                in.nextLine(); // Pulisce il buffer
+                return;
+            }
         }
 
         System.out.print("Inserire nome> ");
@@ -115,58 +129,68 @@ public class Main {
                 inVideo(dimensione, nome, formato);
                 break;
         }
-        System.out.println("\nElemento aggiunto alla lista!\n");
     }
 
     private static void inFoto(double dimensione, String nome, String formato){
-        int risoluzioneX, risoluzioneY;
+        int risoluzioneX = 0, risoluzioneY = 0;
+        boolean runnable = true;
 
-        System.out.print("Inserire larghezza in pixel> ");
-        try {
-            risoluzioneX = in.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Input non valido. Inserisci un numero.");
-            in.nextLine(); // Pulisce il buffer
-            return;
+        while (runnable) {
+            System.out.print("Inserire larghezza in pixel> ");
+            try {
+                risoluzioneX = in.nextInt();
+                runnable = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Input non valido. Inserisci un numero.");
+                in.nextLine(); // Pulisce il buffer
+            }
         }
-
-        System.out.print("Inserire altezza in pixel> ");
-        try {
-            risoluzioneY = in.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Input non valido. Inserisci un numero.");
-            in.nextLine(); // Pulisce il buffer
-            return;
+        runnable = true;
+        while (runnable) {
+            System.out.print("Inserire altezza in pixel> ");
+            try {
+                risoluzioneY = in.nextInt();
+                runnable = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Input non valido. Inserisci un numero.");
+                in.nextLine(); // Pulisce il buffer
+            }
         }
 
         media.add(new Foto(dimensione, nome, risoluzioneX, risoluzioneY, formato));
     }
 
     private static void inAudio(double dimensione, String nome, String formato){
-        int durata;
+        int durata = 0;
+        boolean runnable = true;
 
-        System.out.print("Inserire durata in secondi> ");
-        try {
-            durata = in.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Input non valido. Inserisci un numero.");
-            in.nextLine(); // Pulisce il buffer
-            return;
+        while (runnable) {
+            System.out.print("Inserire durata in secondi> ");
+            try {
+                durata = in.nextInt();
+                runnable = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Input non valido. Inserisci un numero.");
+                in.nextLine(); // Pulisce il buffer
+            }
         }
 
         media.add(new Audio(dimensione, nome, formato, durata));
     }
 
     private static void inVideo(double dimensione, String nome, String formato){
-        int durata;
+        int durata = 0;
+        boolean runnable = true;
 
-        System.out.print("Inserire durata in secondi> ");
-        try {
-            durata = in.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Input non valido. Inserisci un numero.");
-            in.nextLine(); // Pulisce il buffer
-            return;
+        while (runnable) {
+            System.out.print("Inserire durata in secondi> ");
+            try {
+                durata = in.nextInt();
+                runnable = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Input non valido. Inserisci un numero.");
+                in.nextLine(); // Pulisce il buffer
+            }
         }
 
         media.add(new Video(dimensione, nome, formato, durata));
