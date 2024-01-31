@@ -1,20 +1,17 @@
 package it.betacom;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.AfterAll;
-
-// import org.junit.Test;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.*;
-import java.io.*;
-import java.sql.*;
-
-import org.junit.jupiter.params.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-// import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @Slf4j
 public class AppTest {
@@ -28,7 +25,7 @@ public class AppTest {
         } catch (IOException e) {
             log.error("Unexpected error");
             e.printStackTrace();
-            assertFalse(true);
+            fail();
         }
     }
     @BeforeAll
@@ -70,7 +67,7 @@ public class AppTest {
         }catch(SQLException e){
             log.error("Something went wrong");
             e.printStackTrace();
-            assertFalse(true);
+            fail();
         }
     }
 }
