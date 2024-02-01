@@ -1,0 +1,37 @@
+-- Creazione del database
+CREATE DATABASE IF NOT EXISTS MusicDB;
+USE MusicDB;
+
+-- Creazione della tabella Artista
+CREATE TABLE IF NOT EXISTS Artista (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    anno_formazione INT,
+    genere_principale VARCHAR(50)
+);
+
+-- Creazione della tabella Album
+CREATE TABLE IF NOT EXISTS Album (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titolo VARCHAR(255) NOT NULL,
+    anno_pubblicazione INT,
+    genere VARCHAR(50),
+    artista_id INT,
+    FOREIGN KEY (artista_id) REFERENCES Artista(id)
+);
+
+-- Inserimento di dati di esempio nella tabella Artista
+INSERT INTO Artista (nome, anno_formazione, genere_principale) VALUES
+    ('The Beatles', 1960, 'Rock'),
+    ('Queen', 1970, 'Rock'),
+    ('Eminem', 1996, 'Hip-Hop'),
+    ('Miles Davis', 1944, 'Jazz'),
+    ('Adele', 2006, 'Pop');
+
+-- Inserimento di dati di esempio nella tabella Album
+INSERT INTO Album (titolo, anno_pubblicazione, genere, artista_id) VALUES
+    ('Abbey Road', 1969, 'Rock', 1),
+    ('A Night at the Opera', 1975, 'Rock', 2),
+    ('The Marshall Mathers LP', 2000, 'Hip-Hop', 3),
+    ('Kind of Blue', 1959, 'Jazz', 4),
+    ('21', 2011, 'Pop', 5);
