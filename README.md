@@ -1,2 +1,7 @@
 # RepoPCTO-from-29-01-to-02-02
-In questa Repo troverete tutti i progetti svolti.
+In questo bench troverete tutti i progetti svolti dal gruppo.
+
+Progetti pensati e sviluppati da:
+- Andrea Cotugno;
+- Salvatore Abello;
+- Pierpaolo Dentico;
