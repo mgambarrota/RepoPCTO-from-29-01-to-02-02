@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.html.HTMLParagraphElement;
 
 import java.util.Collections;
 import java.util.Date;
@@ -51,6 +53,7 @@ public class GestionaleController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
                     APIResponse.<List<DipendenteModel>>builder()
+
                             .codiceEsitoOperazione(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .descrizioneEsitoOperazione("Errore durante il recupero della " +
                                     "lista dei dipendneti")
@@ -74,5 +77,45 @@ public class GestionaleController {
             );
         }
 
+    }
+
+     @PostMapping(value = "/insert",
+             consumes = {MediaType.APPLICATION_JSON_VALUE},
+             produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<APIResponse<DipendenteModel>> save(@RequestBody @Validated DipendenteModel model){
+        try{
+            DipendenteModel result = dipendenteService.saveOrUpdate(model);
+
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    APIResponse.<DipendenteModel>builder()
+                            .codiceEsitoOperazione(HttpStatus.OK.value())
+                            .descrizioneEsitoOperazione("Inserimento del dipendente andato a buon fine")
+                            .oggettiRestituiti(1)
+                            .oggettiTotaliRestituiti(1)
+                            .payload(result).build());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    APIResponse.<DipendenteModel>builder()
+                            .codiceEsitoOperazione(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .descrizioneEsitoOperazione("Errore nell'inserimento del dipendente")
+                            .oggettiRestituiti(0)
+                            .oggettiTotaliRestituiti(0)
+                            .errori(
+                                    APIError.builder()
+                                            .timestamp(new Date())
+                                            .path("/public/gestionale/insert")
+                                            .details(
+                                                    Collections.singletonList(
+                                                            ErrorDetail.builder()
+                                                                    .code(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()))
+                                                                    .field("generico")
+                                                                    .source("repository.saveOrUpdate()")
+                                                                    .message(e.getMessage()).build()
+                                                    )
+                                            ).build()
+                            ).build()
+            );
+
+        }
     }
 }
