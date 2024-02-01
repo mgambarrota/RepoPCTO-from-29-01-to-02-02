@@ -4,7 +4,7 @@ package it.betacom.GestionaleDipedenti.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value="/restAPI")
+@RequestMapping(value="/public")
 public class RestAPIController {
     @GetMapping(value="/getall")
     public String getSaluto(){
