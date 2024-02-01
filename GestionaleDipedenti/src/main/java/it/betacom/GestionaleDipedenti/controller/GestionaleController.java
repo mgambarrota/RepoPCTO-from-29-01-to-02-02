@@ -51,7 +51,7 @@ public class GestionaleController {
 
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    APIResponse.builder()
+                    APIResponse.<List<DipendenteModel>>builder()
                             .codiceEsitoOperazione(HttpStatus.INTERNAL_SERVER_ERROR.value())
                             .descrizioneEsitoOperazione("Errore durante il recupero della " +
                                     "lista dei dipendneti")
