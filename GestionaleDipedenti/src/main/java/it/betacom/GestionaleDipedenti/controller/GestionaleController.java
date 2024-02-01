@@ -5,7 +5,6 @@ import it.betacom.GestionaleDipedenti.config.APIError;
 import it.betacom.GestionaleDipedenti.config.APIResponse;
 import it.betacom.GestionaleDipedenti.config.ErrorDetail;
 import it.betacom.GestionaleDipedenti.model.DipendenteModel;
-import it.betacom.GestionaleDipedenti.repository.IDipendenteRepository;
 import it.betacom.GestionaleDipedenti.service.IDipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.html.HTMLParagraphElement;
 
 import java.util.Collections;
 import java.util.Date;
