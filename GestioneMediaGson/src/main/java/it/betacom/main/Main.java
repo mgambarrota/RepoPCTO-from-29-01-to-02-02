@@ -1,5 +1,6 @@
 package it.betacom.main;
 
+import com.google.gson.Gson;
 import it.betacom.model.Audio;
 import it.betacom.model.Foto;
 import it.betacom.model.Media;
@@ -14,6 +15,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         List<Media> media = new ArrayList<>();
+        Gson gson= new Gson();
+        String json= gson.toJson(media);
         Scanner scanner = new Scanner(System.in);
         while(true){
             System.out.println("1 - Inserisci i dati di un video");
@@ -34,18 +37,18 @@ public class Main {
             switch (scelta){
                 case "1":
                     System.out.println("Nome media:");
-                    nomeMedia = scanner.next();
+                    nomeMedia = scanner.next("media.json");
                     System.out.println("Pesp media:");
-                    pesoMedia = scanner.next();
+                    pesoMedia = scanner.next("media.json");
                     System.out.println("Estensione media:");
-                    estensioneMedia = scanner.next();
+                    estensioneMedia = scanner.next("media.json");
                     System.out.println("Autore media:");
-                    autoreMedia = scanner.next();
+                    autoreMedia = scanner.next("media.json");
                     System.out.println("Risoluzione:");
                     String risoluzioneVideo = scanner.next();
                     System.out.println("Durata video:");
-                    String durata = scanner.next();
-
+                    String durata = scanner.next("media.json");
+                    System.out.println("media.json" + json );
                     media.add(new Video(media.size() + 1, nomeMedia, pesoMedia, estensioneMedia, autoreMedia, risoluzioneVideo, durata));
 
                     break;

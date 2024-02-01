@@ -1,0 +1,2 @@
+query; Extented_Result;
+select*from alunni where nome like"M%"
