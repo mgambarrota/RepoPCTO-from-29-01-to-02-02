@@ -1,5 +1,7 @@
 package it.betacom.GestionaleDipedenti.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.*;
 
 @Data
@@ -20,7 +22,8 @@ public class APIResponse <T>{
     private int oggettiRestituiti;
     private int oggettiTotaliRestituiti;
     private T payload;
-    private APIError errori;
 
+    @JsonInclude(Include.NON_NULL)
+    private APIError errori;
 }
 
