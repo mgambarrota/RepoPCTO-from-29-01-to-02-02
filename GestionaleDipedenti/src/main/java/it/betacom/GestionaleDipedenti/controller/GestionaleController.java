@@ -48,7 +48,6 @@ public class GestionaleController {
             APIResponse<List<DipendenteModel>> result = builder.build();
 
             return ResponseEntity.status(HttpStatus.OK).body(result);
-
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
                     APIResponse.<List<DipendenteModel>>builder()
