@@ -9,6 +9,7 @@ primary key alunno(IDalunno),
 
 
 -- Insert data into the 'alunno' table
+INSERT INTO alunno (nome, cognome, datanascita) VALUES
 ('Mario', 'Rossi', '2002-03-15'),
 ('Anna', 'Bianchi', '2001-08-22'),
 ('Luca', 'Verdi', '2003-05-10');
