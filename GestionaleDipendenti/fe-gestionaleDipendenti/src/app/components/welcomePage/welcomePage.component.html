@@ -1,0 +1,22 @@
+<p-card header="Francesco Virgolini">
+  <div class="container">
+    <h1>Benvenuto nel Gestionale dipedenti di Francesco Virgolini !</h1>
+    <p>Seleziona una operazione:</p>
+    <div class="button-container">
+      <button
+        pButton
+        type="button"
+        label="Visualizza"
+        class="p-button-success"
+        (click)="navigateTo('Visualizza')"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Assumi"
+        class="p-button-primary"
+        (click)="navigateTo('assumi')"
+      ></button>
+    </div>
+  </div>
+</p-card>
