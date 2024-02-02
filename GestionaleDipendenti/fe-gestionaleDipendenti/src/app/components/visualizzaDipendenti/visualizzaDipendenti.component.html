@@ -1,40 +1,62 @@
-
 <div class="container">
   <div class="button-container">
     <button
-    pButton
-    type="button"
-    label="Assummi"
-    class="p-button-success"
-    (click)="navigateTo('assumi')"
-  ></button>
-  <button
-    pButton
-    type="button"
-    label="Torna indietro"
-    class="p-button-primary"
-    (click)="navigateTo('home')"
-  ></button>
+      pButton
+      type="button"
+      label="Assummi"
+      class="p-button-success"
+      (click)="navigateTo('assumi')"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Torna indietro"
+      class="p-button-primary"
+      (click)="navigateTo('home')"
+    ></button>
   </div>
-
 </div>
 
-<p-table [value]="" styleClass="p-datatable-gridlines" [tableStyle]="{ 'min-width': '50rem' }">
-  <ng-template pTemplate="caption"> Header </ng-template>
+<p-table
+  [value]="dipendenti"
+  styleClass="p-datatable-gridlines"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="caption"> Tabella dipendenti </ng-template>
   <ng-template pTemplate="header">
-      <tr>
-          <th>Code</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Quantity</th>
-      </tr>
+    <tr>
+      <th>Stato attuale</th>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>Data nascita</th>
+      <th>Data assunzione</th>
+      <th>Sede appartenenza</th>
+      <th>Data fine rapporto</th>
+      <th>Azioni</th>
+    </tr>
   </ng-template>
   <ng-template pTemplate="body" let-dip>
-      <tr>
-          <td>{{ dip.code }}</td>
-          <td>{{ dip.name }}</td>
-          <td>{{ dip.category }}</td>
-          <td>{{ dip.quantity }}</td>
-      </tr>
+    <tr>
+      <td>
+        <p-tag
+          [severity]="getSeverity(dip.data_fine_rapporto)"
+          [value]="getValue(dip.data_fine_rapporto)"
+        ></p-tag>
+      </td>
+      <td>{{ dip.nome }}</td>
+      <td>{{ dip.cognome }}</td>
+      <td>{{ dip.data_nascita | date }}</td>
+      <td>{{ dip.data_assunzione | date }}</td>
+      <td>{{ dip.sede_appartenenza }}</td>
+      <td>{{ dip.data_fine_rapporto | date }}</td>
+
+      <td>
+        <p-button
+          [icon]="getIcon(dip.data_fine_rapporto)"
+          [severity]="getSeverityAzione(dip.data_fine_rapporto)"
+          (onClick)="update(dip)"
+        ></p-button>
+      </td>
+    </tr>
   </ng-template>
 </p-table>
