@@ -5,7 +5,7 @@
         <div class="field">
           <label for="nome">Nome</label><br>
           <input type="text" inputId="nome" pInputText placeholder="Nome"  formControlName="nome"/>
-          <small class="p-error" *ngIf="dipendenteForm.get('nome').invalid">
+          <br><small class="p-error" *ngIf="dipendenteForm.get('nome').invalid && dipendenteForm.get('nome').dirty">
             Campo obbligatorio
           </small>
         </div>
@@ -13,7 +13,7 @@
         <div class="field">
           <label for="Cognome">Cognome</label><br>
           <input type="text" inputId="cognome" pInputText placeholder="Cognome" formControlName="cognome"/>
-          <small class="p-error" *ngIf="dipendenteForm.get('cognome').invalid">
+          <br><small class="p-error" *ngIf="dipendenteForm.get('cognome').invalid && dipendenteForm.get('cognome').dirty">
             Campo obbligatorio
           </small>
         </div>
@@ -21,7 +21,7 @@
         <div class="field">
           <label for="data_nascita">Data di nascita</label><br>
           <p-calendar inputId="data_nascita" formControlName="data_nascita" [maxDate]="now" [showIcon]="true"></p-calendar>
-          <small class="p-error" *ngIf="dipendenteForm.get('data_nascita').invalid">
+          <br><small class="p-error" *ngIf="dipendenteForm.get('data_nascita').invalid && dipendenteForm.get('data_nascita').dirty">
             Campo obbligatorio
           </small>
         </div>
@@ -29,7 +29,7 @@
         <div class="field">
           <label for="data_assunzione">Data di assunzione</label><br>
           <p-calendar inputId="data_assunzione" formControlName="data_assunzione" [maxDate]="now" [showIcon]="true"></p-calendar>
-          <small class="p-error" *ngIf="dipendenteForm.get('data_assunzione').invalid">
+          <br><small class="p-error" *ngIf="dipendenteForm.get('data_assunzione').invalid && dipendenteForm.get('data_assunzione').dirty">
             Campo obbligatorio
           </small>
         </div>
@@ -37,7 +37,7 @@
         <div class="field">
           <label for="sede_appartenenza">Sede d'appartenenza</label><br>
           <p-dropdown appendTo="body" inputId="sede_appartenenza" formControlName="sede_appartenenza" [options]="sedi" placeholder="Seleziona una sede"></p-dropdown>
-          <small class="p-error" *ngIf="dipendenteForm.get('sede_appartenenza').invalid">
+          <br><small class="p-error" *ngIf="dipendenteForm.get('sede_appartenenza').invalid && dipendenteForm.get('sede_appartenenza').dirty">
             Campo obbligatorio
           </small>
         </div>

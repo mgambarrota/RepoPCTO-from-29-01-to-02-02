@@ -62,8 +62,7 @@ export class AssumiDipendentiComponent implements OnInit {
 
   addUser(){
     this.dipendenteService
-    .save(new DipendenteFE().formToModel(this.dipendenteForm))
+    .save(new DipendenteFE().formToModel(this.dipendenteForm.value))
     .subscribe();
   }
-
 }
