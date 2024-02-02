@@ -1,4 +1,24 @@
 
+<div class="container">
+  <div class="button-container">
+    <button
+    pButton
+    type="button"
+    label="Assummi"
+    class="p-button-success"
+    (click)="navigateTo('assumi')"
+  ></button>
+  <button
+    pButton
+    type="button"
+    label="Torna indietro"
+    class="p-button-primary"
+    (click)="navigateTo('home')"
+  ></button>
+  </div>
+
+</div>
+
 <p-table [value]="" styleClass="p-datatable-gridlines" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="caption"> Header </ng-template>
   <ng-template pTemplate="header">
