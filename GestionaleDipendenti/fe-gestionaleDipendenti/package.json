@@ -23,7 +23,8 @@
     "@angular/router": "^17.1.2",
     "@angular/ssr": "^17.1.1",
     "express": "^4.18.2",
-    "primeng": "^17.4.0",
+    "primeicons": "^6.0.1",
+    "primeng": "^17.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

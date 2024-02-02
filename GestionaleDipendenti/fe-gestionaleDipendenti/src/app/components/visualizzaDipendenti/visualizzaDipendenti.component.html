@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="button-container">
+    <button
+      pButton
+      type="button"
+      label="Assumi"
+      class="p-button-success"
+      (click)="navigateTo('assumi')"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Torna indietro"
+      class="p-button-primary"
+      (click)="navigateTo('home')"
+    ></button>
+  </div>
+</div>
+
+<p-table
+  [value]="dipendenti"
+  styleClass="p-datatable-gridlines"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="caption"> Tabella dipendenti </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Stato</th>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>Data nascita</th>
+      <th>Data assunzione</th>
+      <th>Sede appartenenza</th>
+      <th>Data fine rapporto</th>
+      <th>Azioni</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-dip>
+    <tr>
+      <td>
+        <p-tag [value]="getValue(dip.data_fine_rapporto)" [severity]="getSeverity(dip.data_fine_rapporto)"></p-tag>
+      </td>
+
+      <td>{{dip.nome}}</td>
+      <td>{{dip.cognome}}</td>
+      <td>{{dip.data_nascita | date}}</td>
+      <td>{{dip.data_assunzione | date}}</td>
+      <td>{{dip.sede_appartenenza}}</td>
+      <td>{{dip.data_fine_rapporto | date}}</td>
+
+      <td>
+        <p-button [icon]="getIcon(dip.data_fine_rapporto)" [severity]="getSeverityAzione(dip.data_fine_rapporto)" (onClick)="update(dip)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary"> Gestionale </ng-template>
+</p-table>
