@@ -1,0 +1,12 @@
+.container {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .button-container {
+    margin-top: 50px;
+  }
+  .button-container button {
+    margin-right: 30px; 
+    width: 15rem;
+  }

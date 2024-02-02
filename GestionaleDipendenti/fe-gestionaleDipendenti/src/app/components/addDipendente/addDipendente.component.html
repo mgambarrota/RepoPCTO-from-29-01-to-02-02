@@ -1,0 +1,130 @@
+<p-card header="Assumi dipendenti">
+  <div class="form">
+    <form [formGroup]="dipendenteForm" (ngSubmit)="addUser()" novalidate>
+      <div class="field">
+        <label for="nome" class="block">Nome</label><br />
+        <input
+          type="text"
+          pInputText
+          placeholder="Nome"
+          formControlName="nome"
+        />
+        <small
+          class="p-error block"
+          *ngIf="
+            dipendenteForm.get('nome')?.invalid &&
+            dipendenteForm.get('nome')?.dirty
+          "
+        >
+          Campo obbligatorio</small
+        >
+      </div>
+      <br />
+      <div class="field">
+        <label for="cognome" class="block">Cognome</label><br />
+        <input
+          type="text"
+          pInputText
+          placeholder="Cognome"
+          formControlName="cognome"
+        />
+        <small
+          class="p-error block"
+          *ngIf="
+            dipendenteForm.get('cognome')?.invalid &&
+            dipendenteForm.get('cognome')?.dirty
+          "
+        >
+          Campo obbligatorio</small
+        >
+      </div>
+      <br />
+      <div class="field">
+        <label for="data_nascita" class="block">Data nascita</label><br />
+        <p-calendar
+          inputId="data_nascita"
+          formControlName="data_nascita"
+          [maxDate]="now"
+          [showIcon]="true"
+        >
+        </p-calendar>
+        <small
+          class="p-error block"
+          *ngIf="
+            dipendenteForm.get('data_nascita')?.invalid &&
+            dipendenteForm.get('data_nascita')?.dirty
+          "
+        >
+          Campo obbligatorio</small
+        >
+      </div>
+      <br />
+      <div class="field">
+        <label for="data_assunzione" class="block">Data assunzione</label><br />
+        <p-calendar
+          inputId="data_assunzione"
+          formControlName="data_assunzione"
+          [maxDate]="now"
+          [showIcon]="true"
+        >
+        </p-calendar>
+        <small
+          class="p-error block"
+          *ngIf="
+            dipendenteForm.get('data_assunzione')?.invalid &&
+            dipendenteForm.get('data_assunzione')?.dirty
+          "
+        >
+          Campo obbligatorio</small
+        >
+      </div>
+      <br />
+      <div class="field">
+        <label for="sede_appartenenza" class="block">Data assunzione</label
+        ><br />
+        <p-dropdown
+          appendTo="body"
+          inputId="sede_appartenenza"
+          [options]="sedi"
+          formControlName="sede_appartenenza"
+          [placeholder]="'Seleziona sede'"
+        >
+        </p-dropdown>
+        <small
+          class="p-error block"
+          *ngIf="
+            dipendenteForm.get('sede_appartenenza')?.invalid &&
+            dipendenteForm.get('sede_appartenenza')?.dirty
+          "
+        >
+          Campo obbligatorio</small
+        >
+      </div>
+
+      <br /><br />
+      <button
+        pButton
+        type="submit"
+        label="Submit"
+        [disabled]="dipendenteForm.invalid"
+      ></button>
+    </form>
+
+    <div class="button-container">
+      <button
+        pButton
+        type="button"
+        label="Visualizza"
+        class="p-button-success"
+        (click)="navigateTo('visualizza')"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Torna indietro"
+        class="p-button-primary"
+        (click)="navigateTo('home')"
+      ></button>
+    </div>
+  </div>
+</p-card>
