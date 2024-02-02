@@ -1,0 +1,10 @@
+.form {
+  text-align: center;
+}
+.button-container {
+  margin-top: 50px;
+}
+.button-container button {
+  margin-right: 30px; 
+  width: 15rem;
+}
