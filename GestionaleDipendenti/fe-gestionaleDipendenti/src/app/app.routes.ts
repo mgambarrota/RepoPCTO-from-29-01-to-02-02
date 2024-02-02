@@ -10,5 +10,10 @@ export const routes: Routes = [
         path: 'visualizza',
         loadComponent: () => import("./components/visualizzaDipendenti/visualizzaDipendenti.component")
         .then(c => c.VisualizzaDipendentiComponent)
+    },
+    {
+        path: 'assumi',
+        loadComponent: () => import("./components/assumiDipendenti/assumiDipendenti.component")
+        .then(c => c.AssumiDipendentiComponent)
     }
 ];

@@ -41,7 +41,7 @@ export class VisualizzaDipendentiComponent implements OnInit {
   }
 
   getIcon(data: Date): string{
-    return data == null ? CONST.CHECK : CONST.TIMES;
+    return data != null ? CONST.CHECK : CONST.TIMES;
   }
 
   getSeverityAzione(data: Date): string{

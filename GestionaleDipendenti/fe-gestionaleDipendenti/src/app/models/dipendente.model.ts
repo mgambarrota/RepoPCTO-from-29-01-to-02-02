@@ -17,7 +17,7 @@ export class DipendenteFE {
   sede_appartenenza?: string;
   data_fine_rapporto?: Date;
 
-  constructor(dipendente: DipendenteBE) {
+  constructor(dipendente?: DipendenteBE) {
     this.id = dipendente?.id;
     this.nome = dipendente?.nome;
     this.cognome = dipendente?.cognome;
